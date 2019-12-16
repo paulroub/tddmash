@@ -1,0 +1,14 @@
+{
+  "name": "tddmash",
+  "version": "1.0.0",
+  "description": "CodeMash TDD Demo Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Paul Roub <paul.roub@hidigital.solutions>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
