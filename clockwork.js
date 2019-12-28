@@ -15,10 +15,10 @@ const numberWords = [
 
 function timeWords(timestring) {
     const parts = parseTime(timestring);
-    const hour = parts[0];
+    const hour = parts[0] % 12;
     const minute = parts[1];
 
-    const hourStr = numberWords[hour % 12];
+    const hourStr = numberWords[hour];
 
     if (minute == 0)
     {
