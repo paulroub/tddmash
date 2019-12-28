@@ -1,7 +1,7 @@
 module.exports = {
     timeWords() {
         return [
-            "it", "is", "tweleve", "o'clock"
+            "it", "is", "twelve", "o'clock"
         ];
     }
 }
