@@ -1,4 +1,4 @@
-const hours = [
+const numberWords = [
     "twelve",
     "one",
     "two",
@@ -16,12 +16,23 @@ const hours = [
 function timeWords(timestring) {
     const parts = parseTime(timestring);
     const hour = parts[0];
+    const minute = parts[1];
 
-    const hourStr = hours[hour % 12];
+    const hourStr = numberWords[hour % 12];
 
-    return [
-        "it", "is", hourStr, "o'clock"
-    ];
+    if (minute == 0)
+    {
+        return [
+            "it", "is", hourStr, "o'clock"
+        ];
+    }
+    else {
+        const minuteStr = numberWords[minute];
+
+        return [
+            "it", "is", minuteStr, "minutes", "past", hourStr
+        ];
+    }
 }
 
 function parseTime(timestr) {
