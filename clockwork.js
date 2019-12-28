@@ -1,7 +1,27 @@
+const hours = [
+    "twelve",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven"
+];
+
 module.exports = {
-    timeWords() {
+    timeWords(timestring) {
+        const parts = timestring.split(':');
+        const hour = Number(parts[0]);
+
+        const hourStr = hours[hour % 12];
+
         return [
-            "it", "is", "twelve", "o'clock"
+            "it", "is", hourStr, "o'clock"
         ];
     }
 }
