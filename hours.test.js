@@ -17,3 +17,21 @@ test('another hour', () => {
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
 });
+
+test('midnight', () => {
+    const time = '00:00';
+    const expected = [
+        "it", "is", "twelve", "o'clock"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+});
+
+test('handle PM times', () => {
+    const time = '22:00';
+    const expected = [
+        "it", "is", "ten", "o'clock"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+});
