@@ -13,15 +13,24 @@ const hours = [
     "eleven"
 ];
 
-module.exports = {
-    timeWords(timestring) {
-        const parts = timestring.split(':');
-        const hour = Number(parts[0]);
+function timeWords(timestring) {
+    const parts = parseTime(timestring);
+    const hour = parts[0];
 
-        const hourStr = hours[hour % 12];
+    const hourStr = hours[hour % 12];
 
-        return [
-            "it", "is", hourStr, "o'clock"
-        ];
-    }
+    return [
+        "it", "is", hourStr, "o'clock"
+    ];
 }
+
+function parseTime(timestr) {
+    return timestr
+        .split(':')
+        .map(numstr => Number(numstr));
+}
+
+module.exports = {
+    timeWords
+}
+
