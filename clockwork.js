@@ -1,24 +1,34 @@
-const numberWords = [
-    "twelve",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-    "eleven"
-];
+
+
+function numberWords(num) {
+    const words = [
+        "twelve",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven"
+    ];
+
+    if (num == 20) {
+        return "twenty";
+    }
+
+    return words[num];
+}
 
 function timeWords(timestring) {
     const parts = parseTime(timestring);
     const hour = parts[0] % 12;
     const minute = parts[1];
 
-    const hourStr = numberWords[hour];
+    const hourStr = numberWords(hour);
 
     if (minute == 0)
     {
@@ -27,7 +37,7 @@ function timeWords(timestring) {
         ];
     }
     else {
-        const minuteStr = numberWords[minute];
+        const minuteStr = numberWords(minute);
 
         return [
             "it", "is", minuteStr, "minutes", "past", hourStr
