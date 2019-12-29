@@ -55,18 +55,18 @@ function timeWords(timestring) {
             "it", "is", numberWords(hour), "o'clock"
         ];
     }
-    else if (minute > 30) {
-        ++hour;
-        minute = 60 - minute;
-
-        const minuteStr = minuteWords(minute);
-
-        return ["it", "is"].concat(minuteStr).concat(["to", numberWords(hour)]);
-    }
     else {
-        const minuteStr = minuteWords(minute);
+        let direction = "past";
 
-        return ["it", "is"].concat(minuteStr).concat(["past", numberWords(hour)]);
+        if (minute > 30) {
+            direction = "to";
+            ++hour;
+            minute = 60 - minute;
+        }
+
+        return ["it", "is"]
+            .concat(minuteWords(minute))
+            .concat([direction, numberWords(hour)]);
     }
 }
 
