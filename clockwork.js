@@ -26,6 +26,10 @@ function numberWords(num) {
     return words[num];
 }
 
+function highlights() {
+    return null;
+}
+
 function minuteWords(minutes) {
     if (minutes == "20") {
         return ["twenty", "minutes"];
@@ -81,6 +85,7 @@ function roundMinutes(minutes) {
 }
 
 module.exports = {
-    timeWords
+    timeWords,
+    highlights
 }
 
