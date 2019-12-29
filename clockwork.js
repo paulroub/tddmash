@@ -26,7 +26,7 @@ function numberWords(num) {
 function timeWords(timestring) {
     const parts = parseTime(timestring);
     const hour = parts[0] % 12;
-    const minute = parts[1];
+    const minute = roundMinutes(parts[1]);
 
     const hourStr = numberWords(hour);
 
@@ -49,6 +49,10 @@ function parseTime(timestr) {
     return timestr
         .split(':')
         .map(numstr => Number(numstr));
+}
+
+function roundMinutes(minutes) {
+    return minutes - minutes % 5;
 }
 
 module.exports = {
