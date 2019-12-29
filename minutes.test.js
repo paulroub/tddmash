@@ -61,4 +61,14 @@ test('five to one', () => {
     ];
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
+});
+
+
+test('quarter to one', () => {
+    const time = '12:45';
+    const expected = [
+        "it", "is", "quarter", "to", "one"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
 })
