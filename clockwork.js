@@ -46,21 +46,27 @@ function minuteWords(minutes) {
 
 function timeWords(timestring) {
     const parts = parseTime(timestring);
-    const hour = parts[0] % 12;
-    const minute = roundMinutes(parts[1]);
-
-    const hourStr = numberWords(hour);
+    let hour = parts[0] % 12;
+    let minute = roundMinutes(parts[1]);
 
     if (minute == 0)
     {
         return [
-            "it", "is", hourStr, "o'clock"
+            "it", "is", numberWords(hour), "o'clock"
         ];
+    }
+    else if (minute > 30) {
+        ++hour;
+        minute = 60 - minute;
+
+        const minuteStr = minuteWords(minute);
+
+        return ["it", "is"].concat(minuteStr).concat(["to", numberWords(hour)]);
     }
     else {
         const minuteStr = minuteWords(minute);
 
-        return ["it", "is"].concat(minuteStr).concat(["past", hourStr]);
+        return ["it", "is"].concat(minuteStr).concat(["past", numberWords(hour)]);
     }
 }
 
