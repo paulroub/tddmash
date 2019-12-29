@@ -33,6 +33,9 @@ function minuteWords(minutes) {
     else if (minutes == 15) {
         return ["quarter"];
     }
+    else if (minutes == 25) {
+        return ["twenty", "five", "minutes"];
+    }
     else if (minutes == 30) {
         return ["half"];
     }
