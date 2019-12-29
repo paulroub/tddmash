@@ -19,6 +19,9 @@ function numberWords(num) {
     if (num == 20) {
         return "twenty";
     }
+    else if (num == 15) {
+        return "quarter";
+    }
 
     return words[num];
 }
