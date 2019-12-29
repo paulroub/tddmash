@@ -17,3 +17,12 @@ test('twenty past the hour', () => {
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
 });
+
+test('round minutes down', () => {
+    const time = '12:06';
+    const expected = [
+        "it", "is", "five", "minutes", "past", "twelve"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+});
