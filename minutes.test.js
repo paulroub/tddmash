@@ -35,3 +35,12 @@ test('quarter past the hour', () => {
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
 });
+
+test('half past the hour', () => {
+    const time = '12:30';
+    const expected = [
+        "it", "is", "half", "past", "twelve"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+});
