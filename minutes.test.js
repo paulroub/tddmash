@@ -53,3 +53,12 @@ test('twenty-five past the hour', () => {
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
 });
+
+test('five to one', () => {
+    const time = '12:55';
+    const expected = [
+        "it", "is", "five", "minutes", "to", "one"
+    ];
+
+    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+})
