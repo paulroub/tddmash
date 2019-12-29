@@ -26,6 +26,18 @@ function numberWords(num) {
     return words[num];
 }
 
+function minuteWords(minutes) {
+    if (minutes == "20") {
+        return ["twenty", "minutes"];
+    }
+    else if (minutes == 15) {
+        return ["quarter"];
+    }
+    else {
+        return [numberWords(minutes), "minutes"];
+    }
+}
+
 function timeWords(timestring) {
     const parts = parseTime(timestring);
     const hour = parts[0] % 12;
@@ -40,11 +52,9 @@ function timeWords(timestring) {
         ];
     }
     else {
-        const minuteStr = numberWords(minute);
+        const minuteStr = minuteWords(minute);
 
-        return [
-            "it", "is", minuteStr, "minutes", "past", hourStr
-        ];
+        return ["it", "is"].concat(minuteStr).concat(["past", hourStr]);
     }
 }
 
