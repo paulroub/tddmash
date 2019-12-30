@@ -219,7 +219,7 @@ class SpanishClockwork extends Clockwork {
             return ["twenty", "minutes"];
         }
         else if (minutes === 15) {
-            return ["quarter"];
+            return ["cuarto"];
         }
         else if (minutes === 25) {
             return ["twenty", "five", "minutes"];
@@ -240,6 +240,13 @@ class SpanishClockwork extends Clockwork {
         const singular = 0;
         const plural = this.prefixes.length === 1 ? 0 : 1;
 
+        let direction = "y";
+        if (minute > 30) {
+            direction = "menos";
+            ++hour;
+            minute = 60 - minute;
+        }
+
         const usedPrefix = hour == 1 ? singular : plural;
 
         if (minute === 0) {
@@ -254,14 +261,6 @@ class SpanishClockwork extends Clockwork {
             }
         }
         else {
-            let direction = "y";
-
-            if (minute > 30) {
-                direction = "menos";
-                ++hour;
-                minute = 60 - minute;
-            }
-
             return this.prefixes[usedPrefix]
                 .concat([this.numberWords(hour), direction])
                 .concat(this.minuteWords(minute));
