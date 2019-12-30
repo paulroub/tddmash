@@ -72,6 +72,10 @@ function getText(word) {
     }
 }
 
+function formatTime(dateTime) {
+    return '';
+}
+
 function minuteWords(minutes) {
     if (minutes === "20") {
         return ["twenty", "minutes"];
@@ -132,6 +136,7 @@ if (typeof exports === 'object') {
         timeWords,
         highlights,
         isHighlighted,
-        getText
+        getText,
+        formatTime
     };
 }
