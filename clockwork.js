@@ -60,7 +60,7 @@ function highlights(theWords) {
 }
 
 function isHighlighted() {
-
+    return true;
 }
 
 function getText() {
