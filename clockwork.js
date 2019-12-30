@@ -80,8 +80,10 @@ function timeWords(timestring, numberText, prefixes, suffix) {
     const singular = 0;
     const plural = prefixes.length === 1 ? 0 : 1;
 
+    const usedPrefix = hour == 1 ? singular : plural;
+
     if (minute === 0) {
-        const results = prefixes[plural]
+        const results = prefixes[usedPrefix]
             .concat(numberWords(hour, numberText));
 
         if (suffix) {
@@ -100,7 +102,7 @@ function timeWords(timestring, numberText, prefixes, suffix) {
             minute = 60 - minute;
         }
 
-        return prefixes[plural]
+        return prefixes[usedPrefix]
             .concat(minuteWords(minute, numberText))
             .concat([direction, numberWords(hour, numberText)]);
     }
