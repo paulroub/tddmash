@@ -39,6 +39,8 @@ module.exports = {
         "no-undefined": "warn",
         "quotes": "off",
         "no-else-return": "off",
-        "no-use-before-define": "off"
+        "no-use-before-define": "off",
+        "max-classes-per-file": "off",
+        "class-methods-use-this": "off"
     }
 };

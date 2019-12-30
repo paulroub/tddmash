@@ -1,8 +1,4 @@
 class Clockwork {
-    constructor() {
-
-    }
-
     numberWords() {
         return null;
     }
@@ -54,10 +50,10 @@ class Clockwork {
 
     parseTime(timestr) {
         return timestr
-        .split(':')
-        .map((numstr) => {
-            return Number(numstr);
-        });
+            .split(':')
+            .map((numstr) => {
+                return Number(numstr);
+            });
     }
 
     roundMinutes(minutes) {
@@ -213,25 +209,24 @@ class SpanishClockwork extends Clockwork {
     }
 
     minuteWords(minutes) {
-       return [this.numberWords(minutes)];
+        return [this.numberWords(minutes)];
     }
 
     timeWords(timestring) {
         const parts = this.parseTime(timestring);
         let hour = parts[0] % 12;
         let minute = this.roundMinutes(parts[1]);
-
         const singular = 0;
         const plural = this.prefixes.length === 1 ? 0 : 1;
-
         let direction = "y";
+
         if (minute > 30) {
             direction = "menos";
             ++hour;
             minute = 60 - minute;
         }
 
-        const usedPrefix = hour == 1 ? singular : plural;
+        const usedPrefix = hour === 1 ? singular : plural;
 
         if (minute === 0) {
             const results = this.prefixes[usedPrefix]

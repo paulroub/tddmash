@@ -6,6 +6,7 @@ const testClock = GetClockwork('en');
 
 test('format noon', () => {
     const noon = new Date();
+
     noon.setHours(12);
     noon.setMinutes(0);
 
