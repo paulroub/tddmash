@@ -39,3 +39,21 @@ test('12:45 es la una menos quarto', () => {
 
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
+
+test('half past the hour', () => {
+    const time = '12:30';
+    const expected = [
+        "son", "las", "doce", "y", "media"
+    ];
+
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});
+
+test('twenty-five past the hour', () => {
+    const time = '12:25';
+    const expected = [
+        "son", "las", "doce", "y", "veinticinco"
+    ];
+
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});
