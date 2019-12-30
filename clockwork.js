@@ -155,7 +155,7 @@ function GetClockwork(language) {
     if (language === "es") {
         numberText = [
             "doce",
-            "uno",
+            "una",
             "dos",
             "tres",
             "cuatro",
