@@ -7,7 +7,11 @@
         <style>
             .clockboard {
                 font-family: consolas, 'courier new', courier, monospace;
+                background-color: #000;
                 color: #666;
+                width: 10em;
+                padding: 1em;
+                text-align: center;
             }
 
             b {
@@ -40,6 +44,8 @@
                 row.forEach((word) => {
                     showWord(word, line);
                 });
+
+                board.appendChild(line);
             }
 
             function showWord(word, line) {
@@ -47,23 +53,26 @@
 
                 if (isHighlighted(word)) {
                     newWord = document.createElement('b');
-                    newWord.innerHTML = getText(word);
+                    newWord.innerHTML = getText(word) + " ";
                 }
                 else {
-                    newWord = document.createTextNode(getText(word));
+                    newWord = document.createTextNode(getText(word) + " ");
                 }
 
                 line.appendChild(newWord)
             }
 
-            setInterval(() => {
+            function showTime() {
                 const now = new Date();
-                const timeStr = `${pad(now.getHours)}:${pad(now.getMinutes())}`;
+                const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
                 const words = timeWords(timeStr);
                 const highlighted = highlights(words);
 
                 showWords(highlighted);
-            }, 100);
+            }
+
+            setInterval(showTime, 1000);
+            showTime();
         </script>
     </body>
 </html>
