@@ -64,7 +64,12 @@ function isHighlighted(word) {
 }
 
 function getText(word) {
-    return word;
+    if (isHighlighted(word)) {
+        return word.slice(1);
+    }
+    else {
+        return word;
+    }
 }
 
 function minuteWords(minutes) {
