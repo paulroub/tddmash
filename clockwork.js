@@ -197,31 +197,23 @@ class SpanishClockwork extends Clockwork {
 
     numberWords(num) {
         if (num === 20) {
-            return "twenty";
+            return "veinte";
         }
         else if (num === 15) {
-            return "quarter";
+            return "cuarto";
+        }
+        else if (num === 25) {
+            return "veinticinco";
+        }
+        else if (num === 30) {
+            return "media";
         }
 
         return this.numberText[num];
     }
 
     minuteWords(minutes) {
-        if (minutes === "20") {
-            return ["twenty", "minutes"];
-        }
-        else if (minutes === 15) {
-            return ["cuarto"];
-        }
-        else if (minutes === 25) {
-            return ["twenty", "five", "minutes"];
-        }
-        else if (minutes === 30) {
-            return ["half"];
-        }
-        else {
-            return [this.numberWords(minutes)];
-        }
+       return [this.numberWords(minutes)];
     }
 
     timeWords(timestring) {
