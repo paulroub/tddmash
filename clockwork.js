@@ -63,8 +63,8 @@ function isHighlighted(word) {
     return word.slice(0, 1) === '*';
 }
 
-function getText() {
-
+function getText(word) {
+    return word;
 }
 
 function minuteWords(minutes) {
