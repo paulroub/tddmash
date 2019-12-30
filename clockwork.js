@@ -77,8 +77,11 @@ function timeWords(timestring, numberText, prefixes, suffix) {
     let hour = parts[0] % 12;
     let minute = roundMinutes(parts[1]);
 
+    const singular = 0;
+    const plural = prefixes.length === 1 ? 0 : 1;
+
     if (minute === 0) {
-        const results = prefixes[0]
+        const results = prefixes[plural]
             .concat(numberWords(hour, numberText));
 
         if (suffix) {
@@ -97,7 +100,7 @@ function timeWords(timestring, numberText, prefixes, suffix) {
             minute = 60 - minute;
         }
 
-        return ["it", "is"]
+        return prefixes[plural]
             .concat(minuteWords(minute, numberText))
             .concat([direction, numberWords(hour, numberText)]);
     }
