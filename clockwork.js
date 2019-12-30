@@ -228,7 +228,7 @@ class SpanishClockwork extends Clockwork {
             return ["half"];
         }
         else {
-            return [this.numberWords(minutes), "minutes"];
+            return [this.numberWords(minutes)];
         }
     }
 
@@ -254,17 +254,17 @@ class SpanishClockwork extends Clockwork {
             }
         }
         else {
-            let direction = "past";
+            let direction = "y";
 
             if (minute > 30) {
-                direction = "to";
+                direction = "menos";
                 ++hour;
                 minute = 60 - minute;
             }
 
             return this.prefixes[usedPrefix]
-                .concat(this.minuteWords(minute))
-                .concat([direction, this.numberWords(hour)]);
+                .concat([this.numberWords(hour), direction])
+                .concat(this.minuteWords(minute));
         }
     }
 }
