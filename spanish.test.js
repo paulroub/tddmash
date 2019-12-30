@@ -21,3 +21,13 @@ test('one is prefixed with "la"', () => {
 
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
+
+
+test('1:10 es la una y diez', () => {
+    const time = '1:10';
+    const expected = [
+        "es", "la", "una", "y", "diez"
+    ];
+
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});
