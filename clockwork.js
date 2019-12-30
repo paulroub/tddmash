@@ -143,7 +143,7 @@ class EnglishClockwork extends Clockwork {
 
             if (minute > 30) {
                 direction = "to";
-                ++hour;
+                hour = (hour + 1) % 12;
                 minute = 60 - minute;
             }
 
@@ -222,7 +222,7 @@ class SpanishClockwork extends Clockwork {
 
         if (minute > 30) {
             direction = "menos";
-            ++hour;
+            hour = (hour + 1) % 12;
             minute = 60 - minute;
         }
 

@@ -63,5 +63,6 @@ test('ten to 12', () => {
     const expected = [
         "son", "las", "doce", "menos", "diez"
     ];
+
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
