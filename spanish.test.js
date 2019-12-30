@@ -4,7 +4,7 @@ const {
 
 const testClock = GetClockwork('es');
 
-test('noone', () => {
+test('noon', () => {
     const time = '12:00';
     const expected = [
         "son", "las", "doce"
