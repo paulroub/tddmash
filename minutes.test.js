@@ -75,3 +75,11 @@ test('quarter to one', () => {
 
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
+
+test('ten to 12', () => {
+    const time = '11:52';
+    const expected = [
+        "it", "is", "ten", "minutes", "to", "twelve"
+    ];
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});

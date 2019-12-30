@@ -57,3 +57,11 @@ test('twenty-five past the hour', () => {
 
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
+
+test('ten to 12', () => {
+    const time = '11:52';
+    const expected = [
+        "son", "las", "doce", "menos", "diez"
+    ];
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});
