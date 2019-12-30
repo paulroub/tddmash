@@ -73,7 +73,11 @@ function getText(word) {
 }
 
 function formatTime(dateTime) {
-    return '';
+    return `${pad(dateTime.getHours())}:${pad(dateTime.getMinutes())}`;
+}
+
+function pad(num) {
+    return `0${num}`.slice(-2);
 }
 
 function minuteWords(minutes) {
