@@ -12,7 +12,7 @@
             }
 
             .clockboard {
-                color: #666;
+                color: #333;
                 font-family: consolas, 'courier new', courier, monospace;
                 font-size: min(7vw, 9vh);
                 margin: .5em auto;
@@ -38,7 +38,8 @@
 
         <script>
             const board = document.getElementById('theclock');
-            const clockwork = GetClockwork('en');
+            let clockwork = GetClockwork('en');
+            let english = true;
 
             function showWords(words) {
                 board.innerHTML = '';
@@ -61,10 +62,10 @@
 
                 if (clockwork.isHighlighted(word)) {
                     newWord = document.createElement('b');
-                    newWord.innerHTML = getText(word) + " ";
+                    newWord.innerHTML = clockwork.getText(word) + " ";
                 }
                 else {
-                    newWord = document.createTextNode(getText(word) + " ");
+                    newWord = document.createTextNode(clockwork.getText(word) + " ");
                 }
 
                 line.appendChild(newWord)
@@ -81,6 +82,12 @@
 
             setInterval(showTime, 1000);
             showTime();
+
+            board.addEventListener('click', () => {
+                english = !english;
+                clockwork = GetClockwork(english ? 'en' : 'es');
+                showTime();
+            });
         </script>
     </body>
 </html>
