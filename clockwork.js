@@ -72,13 +72,13 @@ function minuteWords(minutes, numberText) {
     }
 }
 
-function timeWords(timestring, numberText, prefix, suffix) {
+function timeWords(timestring, numberText, prefixes, suffix) {
     const parts = parseTime(timestring);
     let hour = parts[0] % 12;
     let minute = roundMinutes(parts[1]);
 
     if (minute === 0) {
-        const results = prefix
+        const results = prefixes[0]
             .concat(numberWords(hour, numberText));
 
         if (suffix) {
@@ -142,7 +142,9 @@ function GetClockwork(language) {
             "eleven"
     ];
 
-    let prefix = ["it", "is"];
+    let prefixes = [
+        ["it", "is"]
+    ];
     let suffix = ["o'clock"];
 
     if (language === "es") {
@@ -172,13 +174,16 @@ function GetClockwork(language) {
             ["veinticinco"]
         ];
 
-        prefix = ["son", "las"];
+        prefixes = [
+            ["es", "la"],
+            ["son", "las"]
+        ];
         suffix = null;
     }
 
     return {
         timeWords: (timestr) => {
-            return timeWords(timestr, numberText, prefix, suffix);
+            return timeWords(timestr, numberText, prefixes, suffix);
         },
         highlights: (timestr) => {
             return highlights(timestr, theBoard);
