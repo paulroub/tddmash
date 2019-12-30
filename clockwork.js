@@ -1,4 +1,13 @@
-
+const theBoard = [
+    ["it", "is", "half", "ten"],
+    ["quarter", "twenty"],
+    ["five", "minutes", "to"],
+    ["past", "one", "three"],
+    ["two", "four", "five"],
+    ["six", "seven", "eight"],
+    ["nine", "ten", "eleven"],
+    ["twelve", "o'clock"]
+];
 
 function numberWords(num) {
     const words = [
@@ -26,8 +35,28 @@ function numberWords(num) {
     return words[num];
 }
 
-function highlights() {
-    return null;
+function highlights(timeWords) {
+    const result = [];
+    const remaining = timeWords.slice(0);
+    let nextWord = remaining.shift();
+
+    theBoard.forEach((row) => {
+        const newRow = [];
+
+        row.forEach((word) => {
+            if (word === nextWord) {
+                newRow.push(`*${word}`);
+                nextWord = remaining.shift();
+            }
+            else {
+                newRow.push(word);
+            }
+        });
+
+        result.push(newRow);
+    });
+
+    return result;
 }
 
 function minuteWords(minutes) {
