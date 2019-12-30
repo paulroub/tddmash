@@ -59,8 +59,8 @@ function highlights(theWords) {
     return result;
 }
 
-function isHighlighted() {
-    return true;
+function isHighlighted(word) {
+    return word.slice(0, 1) === '*';
 }
 
 function getText() {
