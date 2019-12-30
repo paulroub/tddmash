@@ -12,3 +12,12 @@ test('noon', () => {
 
     expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
+
+test('one is prefixed with "la"', () => {
+    const time = '1:00';
+    const expected = [
+        "es", "la", "una"
+    ];
+
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
+});
