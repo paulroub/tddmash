@@ -1,5 +1,3 @@
-
-
 function numberWords(num, words) {
     if (num === 20) {
         return "twenty";
@@ -74,15 +72,21 @@ function minuteWords(minutes, numberText) {
     }
 }
 
-function timeWords(timestring, numberText) {
+function timeWords(timestring, numberText, prefix, suffix) {
     const parts = parseTime(timestring);
     let hour = parts[0] % 12;
     let minute = roundMinutes(parts[1]);
 
     if (minute === 0) {
-        return [
-            "it", "is", numberWords(hour, numberText), "o'clock"
-        ];
+        const results = prefix
+            .concat(numberWords(hour, numberText));
+
+        if (suffix) {
+            return results.concat(suffix);
+        }
+        else {
+            return results;
+        }
     }
     else {
         let direction = "past";
@@ -138,9 +142,43 @@ function GetClockwork(language) {
             "eleven"
     ];
 
+    let prefix = ["it", "is"];
+    let suffix = ["o'clock"];
+
+    if (language === "es") {
+        numberText = [
+            "doce",
+            "uno",
+            "dos",
+            "tres",
+            "cuatro",
+            "cinco",
+            "seis",
+            "siete",
+            "ocho",
+            "nueve",
+            "diez",
+            "once"
+        ];
+
+        theBoard = [
+            ["es", "son", "la", "las", "uno"],
+            ["dos", "tres", "cuatro"],
+            ["cinco", "seis", "siete"],
+            ["ocho", "nueve", "diez"],
+            ["once", "doce", "y", "menos"],
+            ["cuarto", "media"],
+            ["cinco", "diez", "veinte"],
+            ["veinticinco"]
+        ];
+
+        prefix = ["son", "las"];
+        suffix = null;
+    }
+
     return {
         timeWords: (timestr) => {
-            return timeWords(timestr, numberText);
+            return timeWords(timestr, numberText, prefix, suffix);
         },
         highlights: (timestr) => {
             return highlights(timestr, theBoard);
