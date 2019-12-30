@@ -114,7 +114,9 @@ function roundMinutes(minutes) {
     return minutes - (minutes % 5);
 }
 
-module.exports = {
-    timeWords,
-    highlights
-};
+if (typeof exports === 'object') {
+    module.exports = {
+        timeWords,
+        highlights
+    };
+}
