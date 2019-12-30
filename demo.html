@@ -38,6 +38,7 @@
 
         <script>
             const board = document.getElementById('theclock');
+            const clockwork = GetClockwork('en');
 
             function showWords(words) {
                 board.innerHTML = '';
@@ -58,7 +59,7 @@
             function showWord(word, line) {
                 let newWord = null;
 
-                if (isHighlighted(word)) {
+                if (clockwork.isHighlighted(word)) {
                     newWord = document.createElement('b');
                     newWord.innerHTML = getText(word) + " ";
                 }
@@ -71,9 +72,9 @@
 
             function showTime() {
                 const now = new Date();
-                const timeStr = formatTime(new Date());
-                const words = timeWords(timeStr);
-                const highlighted = highlights(words);
+                const timeStr = clockwork.formatTime(new Date());
+                const words = clockwork.timeWords(timeStr);
+                const highlighted = clockwork.highlights(words);
 
                 showWords(highlighted);
             }
