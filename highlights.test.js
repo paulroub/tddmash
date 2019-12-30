@@ -1,8 +1,8 @@
 const {
-    highlights,
-    isHighlighted,
-    getText
+    GetClockwork
 } = require('./clockwork');
+
+const testClock = GetClockwork('en');
 
 test('highlight noon', () => {
     const timewords = ["it", "is", "twelve", "o'clock"];
@@ -17,7 +17,7 @@ test('highlight noon', () => {
         ["*twelve", "*o'clock"]
     ];
 
-    expect(highlights(timewords)).toStrictEqual(expected);
+    expect(testClock.highlights(timewords)).toStrictEqual(expected);
 });
 
 test('highlight twenty-five after five', () => {
@@ -33,21 +33,21 @@ test('highlight twenty-five after five', () => {
         ["twelve", "o'clock"]
     ];
 
-    expect(highlights(timewords)).toStrictEqual(expected);
+    expect(testClock.highlights(timewords)).toStrictEqual(expected);
 });
 
 test('is highlighted', () => {
-    expect(isHighlighted('*foo')).toBeTruthy();
+    expect(testClock.isHighlighted('*foo')).toBeTruthy();
 });
 
 test('is not highlighted', () => {
-    expect(isHighlighted('foo')).toBeFalsy();
+    expect(testClock.isHighlighted('foo')).toBeFalsy();
 });
 
 test('get non-highlighted text', () => {
-    expect(getText('foo')).toEqual('foo');
+    expect(testClock.getText('foo')).toEqual('foo');
 });
 
 test('get highlighted text', () => {
-    expect(getText('*foo')).toEqual('foo');
+    expect(testClock.getText('*foo')).toEqual('foo');
 });

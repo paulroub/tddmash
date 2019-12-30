@@ -1,4 +1,8 @@
-const clockwork = require('./clockwork');
+const {
+    GetClockwork
+} = require('./clockwork');
+
+const testClock = GetClockwork('en');
 
 test('five past the hour', () => {
     const time = '12:05';
@@ -6,7 +10,7 @@ test('five past the hour', () => {
         "it", "is", "five", "minutes", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('twenty past the hour', () => {
@@ -15,7 +19,7 @@ test('twenty past the hour', () => {
         "it", "is", "twenty", "minutes", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('round minutes down', () => {
@@ -24,7 +28,7 @@ test('round minutes down', () => {
         "it", "is", "five", "minutes", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('quarter past the hour', () => {
@@ -33,7 +37,7 @@ test('quarter past the hour', () => {
         "it", "is", "quarter", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('half past the hour', () => {
@@ -42,7 +46,7 @@ test('half past the hour', () => {
         "it", "is", "half", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('twenty-five past the hour', () => {
@@ -51,7 +55,7 @@ test('twenty-five past the hour', () => {
         "it", "is", "twenty", "five", "minutes", "past", "twelve"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('five to one', () => {
@@ -60,7 +64,7 @@ test('five to one', () => {
         "it", "is", "five", "minutes", "to", "one"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('quarter to one', () => {
@@ -69,5 +73,5 @@ test('quarter to one', () => {
         "it", "is", "quarter", "to", "one"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });

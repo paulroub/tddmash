@@ -137,10 +137,14 @@ function roundMinutes(minutes) {
 
 if (typeof exports === 'object') {
     module.exports = {
-        timeWords,
-        highlights,
-        isHighlighted,
-        getText,
-        formatTime
+        GetClockwork(language) {
+            return {
+                timeWords,
+                highlights,
+                isHighlighted,
+                getText,
+                formatTime
+            };
+        }
     };
 }

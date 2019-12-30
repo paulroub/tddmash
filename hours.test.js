@@ -1,4 +1,8 @@
-const clockwork = require('./clockwork');
+const {
+    GetClockwork
+} = require('./clockwork');
+
+const testClock = GetClockwork('en');
 
 test('high noon', () => {
     const time = '12:00';
@@ -6,7 +10,7 @@ test('high noon', () => {
         "it", "is", "twelve", "o'clock"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('another hour', () => {
@@ -15,7 +19,7 @@ test('another hour', () => {
         "it", "is", "ten", "o'clock"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('midnight', () => {
@@ -24,7 +28,7 @@ test('midnight', () => {
         "it", "is", "twelve", "o'clock"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
 
 test('handle PM times', () => {
@@ -33,5 +37,5 @@ test('handle PM times', () => {
         "it", "is", "ten", "o'clock"
     ];
 
-    expect(clockwork.timeWords(time)).toStrictEqual(expected);
+    expect(testClock.timeWords(time)).toStrictEqual(expected);
 });
