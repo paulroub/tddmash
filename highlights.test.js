@@ -47,3 +47,7 @@ test('is not highlighted', () => {
 test('get non-highlighted text', () => {
     expect(getText('foo')).toEqual('foo');
 });
+
+test('get highlighted text', () => {
+    expect(getText('*foo')).toEqual('foo');
+});
