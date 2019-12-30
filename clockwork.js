@@ -1,30 +1,6 @@
-const theBoard = [
-    ["it", "is", "half", "ten"],
-    ["quarter", "twenty"],
-    ["five", "minutes", "to"],
-    ["past", "one", "three"],
-    ["two", "four", "five"],
-    ["six", "seven", "eight"],
-    ["nine", "ten", "eleven"],
-    ["twelve", "o'clock"]
-];
 
-function numberWords(num) {
-    const words = [
-        "twelve",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven"
-    ];
 
+function numberWords(num, words) {
     if (num === 20) {
         return "twenty";
     }
@@ -35,7 +11,7 @@ function numberWords(num) {
     return words[num];
 }
 
-function highlights(theWords) {
+function highlights(theWords, theBoard) {
     const result = [];
     const remaining = theWords.slice(0);
     let nextWord = remaining.shift();
@@ -80,7 +56,7 @@ function pad(num) {
     return `0${num}`.slice(-2);
 }
 
-function minuteWords(minutes) {
+function minuteWords(minutes, numberText) {
     if (minutes === "20") {
         return ["twenty", "minutes"];
     }
@@ -94,18 +70,18 @@ function minuteWords(minutes) {
         return ["half"];
     }
     else {
-        return [numberWords(minutes), "minutes"];
+        return [numberWords(minutes, numberText), "minutes"];
     }
 }
 
-function timeWords(timestring) {
+function timeWords(timestring, numberText) {
     const parts = parseTime(timestring);
     let hour = parts[0] % 12;
     let minute = roundMinutes(parts[1]);
 
     if (minute === 0) {
         return [
-            "it", "is", numberWords(hour), "o'clock"
+            "it", "is", numberWords(hour, numberText), "o'clock"
         ];
     }
     else {
@@ -118,8 +94,8 @@ function timeWords(timestring) {
         }
 
         return ["it", "is"]
-            .concat(minuteWords(minute))
-            .concat([direction, numberWords(hour)]);
+            .concat(minuteWords(minute, numberText))
+            .concat([direction, numberWords(hour, numberText)]);
     }
 }
 
@@ -135,16 +111,48 @@ function roundMinutes(minutes) {
     return minutes - (minutes % 5);
 }
 
+function GetClockwork(language) {
+    let theBoard = [
+        ["it", "is", "half", "ten"],
+        ["quarter", "twenty"],
+        ["five", "minutes", "to"],
+        ["past", "one", "three"],
+        ["two", "four", "five"],
+        ["six", "seven", "eight"],
+        ["nine", "ten", "eleven"],
+        ["twelve", "o'clock"]
+    ];
+
+    let numberText = [
+            "twelve",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten",
+            "eleven"
+    ];
+
+    return {
+        timeWords: (timestr) => {
+            return timeWords(timestr, numberText);
+        },
+        highlights: (timestr) => {
+            return highlights(timestr, theBoard);
+        },
+        isHighlighted,
+        getText,
+        formatTime
+    };
+}
+
 if (typeof exports === 'object') {
     module.exports = {
-        GetClockwork(language) {
-            return {
-                timeWords,
-                highlights,
-                isHighlighted,
-                getText,
-                formatTime
-            };
-        }
+        GetClockwork
     };
 }
