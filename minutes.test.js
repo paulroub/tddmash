@@ -70,4 +70,4 @@ test('quarter to one', () => {
     ];
 
     expect(clockwork.timeWords(time)).toStrictEqual(expected);
-})
+});

@@ -25,19 +25,19 @@ function numberWords(num) {
         "eleven"
     ];
 
-    if (num == 20) {
+    if (num === 20) {
         return "twenty";
     }
-    else if (num == 15) {
+    else if (num === 15) {
         return "quarter";
     }
 
     return words[num];
 }
 
-function highlights(timeWords) {
+function highlights(theWords) {
     const result = [];
-    const remaining = timeWords.slice(0);
+    const remaining = theWords.slice(0);
     let nextWord = remaining.shift();
 
     theBoard.forEach((row) => {
@@ -60,16 +60,16 @@ function highlights(timeWords) {
 }
 
 function minuteWords(minutes) {
-    if (minutes == "20") {
+    if (minutes === "20") {
         return ["twenty", "minutes"];
     }
-    else if (minutes == 15) {
+    else if (minutes === 15) {
         return ["quarter"];
     }
-    else if (minutes == 25) {
+    else if (minutes === 25) {
         return ["twenty", "five", "minutes"];
     }
-    else if (minutes == 30) {
+    else if (minutes === 30) {
         return ["half"];
     }
     else {
@@ -82,8 +82,7 @@ function timeWords(timestring) {
     let hour = parts[0] % 12;
     let minute = roundMinutes(parts[1]);
 
-    if (minute == 0)
-    {
+    if (minute === 0) {
         return [
             "it", "is", numberWords(hour), "o'clock"
         ];
@@ -106,15 +105,16 @@ function timeWords(timestring) {
 function parseTime(timestr) {
     return timestr
         .split(':')
-        .map(numstr => Number(numstr));
+        .map((numstr) => {
+            return Number(numstr);
+        });
 }
 
 function roundMinutes(minutes) {
-    return minutes - minutes % 5;
+    return minutes - (minutes % 5);
 }
 
 module.exports = {
     timeWords,
     highlights
-}
-
+};
