@@ -1,5 +1,6 @@
 const {
-    highlights
+    highlights,
+    isHighlighted
 } = require('./clockwork');
 
 test('highlight noon', () => {
@@ -32,4 +33,8 @@ test('highlight twenty-five after five', () => {
     ];
 
     expect(highlights(timewords)).toStrictEqual(expected);
+});
+
+test('is highlighted', () => {
+    expect(isHighlighted('*foo')).toBe(true);
 });
