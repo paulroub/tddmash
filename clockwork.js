@@ -1,138 +1,85 @@
-function numberWords(num, words) {
-    if (num === 20) {
-        return "twenty";
-    }
-    else if (num === 15) {
-        return "quarter";
+class Clockwork {
+    constructor() {
+
     }
 
-    return words[num];
-}
+    numberWords() {
+        return null;
+    }
 
-function highlights(theWords, theBoard) {
-    const result = [];
-    const remaining = theWords.slice(0);
-    let nextWord = remaining.shift();
+    highlights(theWords) {
+        const result = [];
+        const remaining = theWords.slice(0);
+        let nextWord = remaining.shift();
 
-    theBoard.forEach((row) => {
-        const newRow = [];
+        this.theBoard.forEach((row) => {
+            const newRow = [];
 
-        row.forEach((word) => {
-            if (word === nextWord) {
-                newRow.push(`*${word}`);
-                nextWord = remaining.shift();
-            }
-            else {
-                newRow.push(word);
-            }
+            row.forEach((word) => {
+                if (word === nextWord) {
+                    newRow.push(`*${word}`);
+                    nextWord = remaining.shift();
+                }
+                else {
+                    newRow.push(word);
+                }
+            });
+
+            result.push(newRow);
         });
 
-        result.push(newRow);
-    });
-
-    return result;
-}
-
-function isHighlighted(word) {
-    return word.slice(0, 1) === '*';
-}
-
-function getText(word) {
-    if (isHighlighted(word)) {
-        return word.slice(1);
+        return result;
     }
-    else {
-        return word;
+
+    isHighlighted(word) {
+        return word.slice(0, 1) === '*';
     }
-}
 
-function formatTime(dateTime) {
-    return `${pad(dateTime.getHours())}:${pad(dateTime.getMinutes())}`;
-}
-
-function pad(num) {
-    return `0${num}`.slice(-2);
-}
-
-function minuteWords(minutes, numberText) {
-    if (minutes === "20") {
-        return ["twenty", "minutes"];
-    }
-    else if (minutes === 15) {
-        return ["quarter"];
-    }
-    else if (minutes === 25) {
-        return ["twenty", "five", "minutes"];
-    }
-    else if (minutes === 30) {
-        return ["half"];
-    }
-    else {
-        return [numberWords(minutes, numberText), "minutes"];
-    }
-}
-
-function timeWords(timestring, numberText, prefixes, suffix) {
-    const parts = parseTime(timestring);
-    let hour = parts[0] % 12;
-    let minute = roundMinutes(parts[1]);
-
-    const singular = 0;
-    const plural = prefixes.length === 1 ? 0 : 1;
-
-    const usedPrefix = hour == 1 ? singular : plural;
-
-    if (minute === 0) {
-        const results = prefixes[usedPrefix]
-            .concat(numberWords(hour, numberText));
-
-        if (suffix) {
-            return results.concat(suffix);
+    getText(word) {
+        if (this.isHighlighted(word)) {
+            return word.slice(1);
         }
         else {
-            return results;
+            return word;
         }
     }
-    else {
-        let direction = "past";
 
-        if (minute > 30) {
-            direction = "to";
-            ++hour;
-            minute = 60 - minute;
-        }
-
-        return prefixes[usedPrefix]
-            .concat(minuteWords(minute, numberText))
-            .concat([direction, numberWords(hour, numberText)]);
+    formatTime(dateTime) {
+        return `${this.pad(dateTime.getHours())}:${this.pad(dateTime.getMinutes())}`;
     }
-}
 
-function parseTime(timestr) {
-    return timestr
+    pad(num) {
+        return `0${num}`.slice(-2);
+    }
+
+    parseTime(timestr) {
+        return timestr
         .split(':')
         .map((numstr) => {
             return Number(numstr);
         });
+    }
+
+    roundMinutes(minutes) {
+        return minutes - (minutes % 5);
+    }
 }
 
-function roundMinutes(minutes) {
-    return minutes - (minutes % 5);
-}
+class EnglishClockwork extends Clockwork {
+    constructor() {
+        super();
+        this.theBoard = [
+            ["it", "is", "half", "ten"],
+            ["quarter", "twenty"],
+            ["five", "minutes", "to"],
+            ["past", "one", "three"],
+            ["two", "four", "five"],
+            ["six", "seven", "eight"],
+            ["nine", "ten", "eleven"],
+            ["twelve", "o'clock"]
+        ];
 
-function GetClockwork(language) {
-    let theBoard = [
-        ["it", "is", "half", "ten"],
-        ["quarter", "twenty"],
-        ["five", "minutes", "to"],
-        ["past", "one", "three"],
-        ["two", "four", "five"],
-        ["six", "seven", "eight"],
-        ["nine", "ten", "eleven"],
-        ["twelve", "o'clock"]
-    ];
-
-    let numberText = [
+        this.numberText = [
             "twelve",
             "one",
             "two",
@@ -145,15 +92,85 @@ function GetClockwork(language) {
             "nine",
             "ten",
             "eleven"
-    ];
+        ];
 
-    let prefixes = [
-        ["it", "is"]
-    ];
-    let suffix = ["o'clock"];
+        this.prefixes = [
+            ["it", "is"]
+        ];
+        this.suffix = ["o'clock"];
+    }
 
-    if (language === "es") {
-        numberText = [
+    numberWords(num) {
+        if (num === 20) {
+            return "twenty";
+        }
+        else if (num === 15) {
+            return "quarter";
+        }
+
+        return this.numberText[num];
+    }
+
+    minuteWords(minutes) {
+        if (minutes === "20") {
+            return ["twenty", "minutes"];
+        }
+        else if (minutes === 15) {
+            return ["quarter"];
+        }
+        else if (minutes === 25) {
+            return ["twenty", "five", "minutes"];
+        }
+        else if (minutes === 30) {
+            return ["half"];
+        }
+        else {
+            return [this.numberWords(minutes, this.numberText), "minutes"];
+        }
+    }
+
+    timeWords(timestring) {
+        const parts = this.parseTime(timestring);
+        let hour = parts[0] % 12;
+        let minute = this.roundMinutes(parts[1]);
+
+        const singular = 0;
+        const plural = this.prefixes.length === 1 ? 0 : 1;
+
+        const usedPrefix = hour == 1 ? singular : plural;
+
+        if (minute === 0) {
+            const results = this.prefixes[usedPrefix]
+                .concat(this.numberWords(hour, this.numberText));
+
+            if (this.suffix) {
+                return results.concat(this.suffix);
+            }
+            else {
+                return results;
+            }
+        }
+        else {
+            let direction = "past";
+
+            if (minute > 30) {
+                direction = "to";
+                ++hour;
+                minute = 60 - minute;
+            }
+
+            return this.prefixes[usedPrefix]
+                .concat(this.minuteWords(minute))
+                .concat([direction, this.numberWords(hour)]);
+        }
+    }
+}
+
+class SpanishClockwork extends Clockwork {
+    constructor() {
+        super();
+
+        this.numberText = [
             "doce",
             "una",
             "dos",
@@ -168,7 +185,7 @@ function GetClockwork(language) {
             "once"
         ];
 
-        theBoard = [
+        this.theBoard = [
             ["es", "son", "la", "las", "uno"],
             ["dos", "tres", "cuatro"],
             ["cinco", "seis", "siete"],
@@ -179,24 +196,89 @@ function GetClockwork(language) {
             ["veinticinco"]
         ];
 
-        prefixes = [
+        this.prefixes = [
             ["es", "la"],
             ["son", "las"]
         ];
-        suffix = null;
+        this.suffix = null;
     }
 
-    return {
-        timeWords: (timestr) => {
-            return timeWords(timestr, numberText, prefixes, suffix);
-        },
-        highlights: (timestr) => {
-            return highlights(timestr, theBoard);
-        },
-        isHighlighted,
-        getText,
-        formatTime
-    };
+    numberWords(num) {
+        if (num === 20) {
+            return "twenty";
+        }
+        else if (num === 15) {
+            return "quarter";
+        }
+
+        return this.numberText[num];
+    }
+
+    minuteWords(minutes) {
+        if (minutes === "20") {
+            return ["twenty", "minutes"];
+        }
+        else if (minutes === 15) {
+            return ["quarter"];
+        }
+        else if (minutes === 25) {
+            return ["twenty", "five", "minutes"];
+        }
+        else if (minutes === 30) {
+            return ["half"];
+        }
+        else {
+            return [this.numberWords(minutes), "minutes"];
+        }
+    }
+
+    timeWords(timestring) {
+        const parts = this.parseTime(timestring);
+        let hour = parts[0] % 12;
+        let minute = this.roundMinutes(parts[1]);
+
+        const singular = 0;
+        const plural = this.prefixes.length === 1 ? 0 : 1;
+
+        const usedPrefix = hour == 1 ? singular : plural;
+
+        if (minute === 0) {
+            const results = this.prefixes[usedPrefix]
+                .concat(this.numberWords(hour));
+
+            if (this.suffix) {
+                return results.concat(this.suffix);
+            }
+            else {
+                return results;
+            }
+        }
+        else {
+            let direction = "past";
+
+            if (minute > 30) {
+                direction = "to";
+                ++hour;
+                minute = 60 - minute;
+            }
+
+            return this.prefixes[usedPrefix]
+                .concat(this.minuteWords(minute))
+                .concat([direction, this.numberWords(hour)]);
+        }
+    }
+}
+
+function GetClockwork(language) {
+    if (language === "en") {
+        return new EnglishClockwork();
+    }
+    else if (language === "es") {
+        return new SpanishClockwork();
+    }
+    else {
+        return null;
+    }
 }
 
 if (typeof exports === 'object') {
