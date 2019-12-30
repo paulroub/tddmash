@@ -1,6 +1,7 @@
 const {
     highlights,
-    isHighlighted
+    isHighlighted,
+    getText
 } = require('./clockwork');
 
 test('highlight noon', () => {
@@ -41,4 +42,8 @@ test('is highlighted', () => {
 
 test('is not highlighted', () => {
     expect(isHighlighted('foo')).toBeFalsy();
+});
+
+test('get non-highlighted text', () => {
+    expect(getText('foo')).toEqual('foo');
 });
