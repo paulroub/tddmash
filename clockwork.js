@@ -59,6 +59,14 @@ function highlights(theWords) {
     return result;
 }
 
+function isHighlighted() {
+
+}
+
+function getText() {
+
+}
+
 function minuteWords(minutes) {
     if (minutes === "20") {
         return ["twenty", "minutes"];
@@ -117,6 +125,8 @@ function roundMinutes(minutes) {
 if (typeof exports === 'object') {
     module.exports = {
         timeWords,
-        highlights
+        highlights,
+        isHighlighted,
+        getText
     };
 }

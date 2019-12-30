@@ -3,10 +3,67 @@
 <html>
     <head>
         <title>Clockwork demo</title>
-        <script src=clockwork.js></script>
+
+        <style>
+            .clockboard {
+                font-family: consolas, 'courier new', courier, monospace;
+                color: #666;
+            }
+
+            b {
+                font-weight: bold;
+                color: #FFF;
+            }
+        </style>
     </head>
 
     <body>
-        <textarea class=clockboard></textarea>
+        <div class=clockboard id=theclock></div>
+        <script src=clockwork.js></script>
+
+        <script>
+            const board = document.getElementById('theclock');
+
+            function pad(num) {
+                return `0${num}`.slice(-2);
+            }
+
+            function showWords(words) {
+                board.innerHTML = '';
+
+                words.forEach(showRow);
+            }
+
+            function showRow(row) {
+                const line = document.createElement('p');
+
+                row.forEach((word) => {
+                    showWord(word, line);
+                });
+            }
+
+            function showWord(word, line) {
+                let newWord = null;
+
+                if (isHighlighted(word)) {
+                    newWord = document.createElement('b');
+                    newWord.innerHTML = getText(word);
+                }
+                else {
+                    newWord = document.createTextNode(getText(word));
+                }
+
+                line.appendChild(newWord)
+            }
+
+            setInterval(() => {
+                const now = new Date();
+                const timeStr = `${pad(now.getHours)}:${pad(now.getMinutes())}`;
+                const words = timeWords(timeStr);
+                const highlighted = highlights(words);
+
+                showWords(highlighted);
+            }, 100);
+        </script>
     </body>
 </html>
