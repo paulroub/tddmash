@@ -36,9 +36,9 @@ test('highlight twenty-five after five', () => {
 });
 
 test('is highlighted', () => {
-    expect(isHighlighted('*foo')).toBe(true);
+    expect(isHighlighted('*foo')).toBeTruthy();
 });
 
 test('is not highlighted', () => {
-    expect(isHighlighted('foo')).toBe(false);
+    expect(isHighlighted('foo')).toBeFalsy();
 });
