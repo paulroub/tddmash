@@ -134,21 +134,13 @@ class EnglishClockwork extends Clockwork {
         let hour = parts[0] % 12;
         let minute = this.roundMinutes(parts[1]);
 
-        const singular = 0;
-        const plural = this.prefixes.length === 1 ? 0 : 1;
-
-        const usedPrefix = hour == 1 ? singular : plural;
+        const prefix = this.prefixes[0];
 
         if (minute === 0) {
-            const results = this.prefixes[usedPrefix]
+            const results = prefix
                 .concat(this.numberWords(hour, this.numberText));
 
-            if (this.suffix) {
-                return results.concat(this.suffix);
-            }
-            else {
-                return results;
-            }
+            return results.concat(this.suffix);
         }
         else {
             let direction = "past";
@@ -159,7 +151,7 @@ class EnglishClockwork extends Clockwork {
                 minute = 60 - minute;
             }
 
-            return this.prefixes[usedPrefix]
+            return prefix
                 .concat(this.minuteWords(minute))
                 .concat([direction, this.numberWords(hour)]);
         }
@@ -253,12 +245,7 @@ class SpanishClockwork extends Clockwork {
             const results = this.prefixes[usedPrefix]
                 .concat(this.numberWords(hour));
 
-            if (this.suffix) {
-                return results.concat(this.suffix);
-            }
-            else {
-                return results;
-            }
+            return results;
         }
         else {
             return this.prefixes[usedPrefix]
