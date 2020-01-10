@@ -174,7 +174,7 @@ class SpanishClockwork extends Clockwork {
         ];
 
         this.theBoard = [
-            ["es", "son", "la", "las", "uno"],
+            ["es", "son", "la", "las", "una"],
             ["dos", "tres", "cuatro"],
             ["cinco", "seis", "siete"],
             ["ocho", "nueve", "diez"],
