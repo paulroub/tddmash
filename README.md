@@ -15,7 +15,7 @@ more instructive than the final code, particularly in conjunction with the slide
 
 The slides can be found at [roub.net/pres/codemash2020][slides].
 
-Video of the presentation is expected in a month or so; I'll add that here as well when available.
+You can watch the actual presentation [at Pluralsight][vid], for free.
 
 ## Usage
 
@@ -25,3 +25,4 @@ Open `demo.html` in a reasonably-modern  browser  and the clock should run, upda
 [spanish]: images/spanish.png
 [sesh]: https://www.codemash.org/session-details/?id=145401
 [slides]: http://roub.net/pres/codemash2020/
+[vid]: https://app.pluralsight.com/library/courses/codemash-session-87
